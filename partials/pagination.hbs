@@ -1,0 +1,9 @@
+<div class=" divbtnsposts col-md-12">
+  {{#if prev}}
+    <button id="antposts" onclick="window.location.href='{{page_url prev}}'" class="btntool"> << ANTERIOR </button>
+  {{/if}}
+  <span class="page-number">Página {{page}} de {{pages}}</span>
+  {{#if next}}
+    <button id="sigposts" onclick="window.location.href='{{page_url next}}'"  class="btntool">SIGUIENTE >> </button>
+  {{/if}}
+</div>

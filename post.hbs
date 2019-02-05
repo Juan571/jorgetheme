@@ -1,0 +1,473 @@
+{{!< default}}
+
+{{!-- The tag above means: insert everything in this file
+into the {body} of the default.hbs template --}}
+
+<header class="site-header outer">
+  
+</header>
+
+{{!-- Everything inside the #post tags pulls data from the post --}}
+{{#post}}
+
+<section style="background-color: white;">
+    <div class="container">
+      <div class="row" style="padding-top: 25px;">
+        <div class="col-sm-8" >
+          <div  class="bodypost">
+            <img class="card-img-top" src="{{feature_image}}" alt="">
+            <div class="card-body-post">
+              {{#primary_tag}}
+
+                  <a class="card-tag-post" href="{{url}}"> {{name}}</a>
+              {{/primary_tag}}
+
+                <p class="card-title-post">{{title}}</p>
+                <hr class="hrseparator" align="left">
+                <p class="card-date-post"> {{date format="D MMMM YYYY"}}</p>
+                <p class="card-text-post">
+                {{content}}
+                </p>
+              </div>
+              <div class="row">
+                <div class="col-sm-8">
+                  {{#primary_tag}}
+
+                  {{/primary_tag}}
+                  {{#foreach tags}}
+                     <button href="{{url}}" class="btntool tags">{{name}}</button>
+                  {{/foreach}}
+
+
+                </div>
+                <!--div class="col-sm-4">
+                  <div style="text-align: right;">
+                    <ul class="social-network  circle-post ">
+                      <li><a href="#" class="icoFacebookpost" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                      <li><a href="#" class="icoTwitterpost" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+                      <li><a href="#" class="icoInstagrampost" title="Instagram"><i class="fab fa-instagram"></i></a></li>
+                      <li><a href="#" class="icoLinkedinpost" title="Linkedin"><i class="fab fa-linkedin"></i></a></li>
+                    </ul>
+                  </div>
+                </div-->
+
+              </div>
+              <section id=subscribepost>
+                <div class="container" style="padding-top: 45px;">
+                  <div class="row" style="margin-top: -25px;">
+                    <div class="col-md-5" style="margin-left: 0px;">
+                      <p style="margin-bottom: 0px;font-size: 20px;">Suscribase al boletín</p>
+                      <p style="font-size: 15px;">Mantengase en contacto al unirse al boletín</p>
+                    </div>
+                    <div class="col-md-4">
+                      <form>
+                        <div class="form-group">
+                          <input id="inputsuscribe" type="email" placeholder="Ingresa tu correo">
+                        </div>
+                      </form>
+                    </div>
+                    <div class="col-md-2">
+                      <button id="btnsuscribepost" type="" class="btntool">Suscribete</button>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              {{#if authors}}
+    <ul>
+    {{#foreach authors}}
+    <section id=authorpost>
+      <div class="container" style="margin-top: 20px;">
+        <div class="row">
+          <div class="col-md-2" style="margin-left: 0px;">
+            <img class="img-coment-post rounded-circle" src="{{profile_image}}" alt="">
+          </div>
+          <div class="col-md-10">
+            <a href="{{url}}" title="{{name}}" class="author author-{{id}} {{slug}} card-subtitle-post">{{name}}</a>
+            <p class="card-text-post">
+              {{bio}}
+            </p>
+            <div class="divsocial-network" style="text-align: left;">
+              <ul class="social-network  circle-post ">
+                <li><a href="{{facebook}}" class="icoFacebookpost" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a href="{{twitter}}" class="icoTwitterpost" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="{{facebook}}" class="icoInstagrampost" title="Instagram"><i class="fab fa-instagram"></i></a></li>
+                <li><a href="{{website}}" class="icoLinkedinpost" title="Linkedin"><i class="fab fa-linkedin"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    {{/foreach}}
+    </ul>
+  {{/if}}
+
+
+              <hr>
+
+              <div class="container" style="margin-top: 20px;">
+                <div class="row">
+                  <div class="row">
+                    <p class="card-subtitle-post">Tambien te puede interesar</p>
+                  </div>
+                  <div class="row">
+                                {{#if primary_tag}}
+                                {{#get "posts" filter="id:-{{id}}" limit="3" as |related_posts|}}
+                                    {{#if related_posts}}
+
+                                                {{#foreach related_posts}}
+                                                <div class="entradas col-sm-4 my-4">
+                                                  <div href="{{url}}" class="entry-card shadow card card">
+                                                    {{#if feature_image}}
+                                                      <img  class="card-img-top" src="{{feature_image}}" alt="{{title}}">
+                                                    {{/if}}
+                                                    <div class="card-body">
+                                                      {{#if primary_tag}}
+                                                          <p class="card-tag"> {{primary_tag.name}}</p>
+                                                      {{/if}}
+                                                      <p href="{{url}}" class="card-title">{{title}}</p>
+                                                      <p class="card-date"> {{date}}</p>
+
+                                                    </div>
+                                                    <div class="cardfooter col-sm-12">
+                                                      <a href="{{url}}" class="card-more">LEER MAS</a>
+                                                    </div>
+                                                  </div>
+                                                </div>
+
+                                                {{/foreach}}
+
+
+
+                                    {{/if}}
+                                {{/get}}
+                                {{/if}}
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <section id=coments>
+                <div class="container" style="margin-top: 20px;">
+                  <div class="row">
+                    <p class="card-subtitle-post">Comentarios (5)</p>
+                  </div>
+
+                  <div class="row" style="margin-top: 15px;">
+                    <div class="col-md-2" style="margin-left: 0px;">
+                      <img class="img-coment-post2 rounded-circle" src="assets/aboutimg.png" alt="">
+                    </div>
+                    <div class="col-md-10">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <p class="card-subtitle-post"> H. Rackham</p>
+                          <p class="card-date"> Junio 22, 2018</p>
+                        </div>
+                        <div class="col-md-6" style="text-align:right;">
+                          <button  type="" class="btntool tags">Responder</button>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <p class="card-text-post">
+                            Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
+      "There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..."
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row" style="margin-top: 15px;margin-left: 20px;">
+                    <div class="col-md-2" style="margin-left: 0px;">
+                      <img class="img-coment-post2 rounded-circle" src="assets/aboutimg.png" alt="">
+                    </div>
+                    <div class="col-md-10">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <p class="card-subtitle-post"> H. Rackham</p>
+                          <p class="card-date"> Junio 22, 2018</p>
+                        </div>
+                        <div class="col-md-6" style="text-align:right;">
+                          <button  type="" class="btntool tags">Responder</button>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <p class="card-text-post">
+                            Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
+      "There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..."
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row" style="margin-top: 15px;margin-left: 45px;">
+                    <div class="col-md-2" style="margin-left: 0px;">
+                      <img class="img-coment-post2 rounded-circle" src="assets/aboutimg.png" alt="">
+                    </div>
+                    <div class="col-md-10">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <p class="card-subtitle-post"> H. Rackham</p>
+                          <p class="card-date"> Junio 22, 2018</p>
+                        </div>
+                        <div class="col-md-6" style="text-align:right;">
+                          <button  type="" class="btntool tags">Responder</button>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <p class="card-text-post">
+                            Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
+      "There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..."
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row" style="margin-top: 15px;margin-left: 65px;">
+                    <div class="col-md-2" style="margin-left: 0px;">
+                      <img class="img-coment-post2 rounded-circle" src="assets/aboutimg.png" alt="">
+                    </div>
+                    <div class="col-md-10">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <p class="card-subtitle-post"> H. Rackham</p>
+                          <p class="card-date"> Junio 22, 2018</p>
+                        </div>
+                        <div class="col-md-6" style="text-align:right;">
+                          <button  type="" class="btntool tags">Responder</button>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <p class="card-text-post">
+                            Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
+      "There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..."
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row" style="margin-top: 15px;">
+                    <div class="col-md-2" style="margin-left: 0px;">
+                      <img class="img-coment-post2 rounded-circle" src="assets/aboutimg.png" alt="">
+                    </div>
+                    <div class="col-md-10">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <p class="card-subtitle-post"> H. Rackham</p>
+                          <p class="card-date"> Junio 22, 2018</p>
+                        </div>
+                        <div class="col-md-6" style="text-align:right;">
+                          <button  type="" class="btntool tags">Responder</button>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <p class="card-text-post">
+                            Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
+      "There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..."
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </section>
+              <section  id=contact>
+                <div class="container">
+                  <div class="col-sm-12 my-12" style="text-align: center;padding-top: 45px">
+                    <h1 class="htittles" style="text-align: left;"> Deja tu comentario </h1>
+                    <hr class="hrseparator">
+                    <div class="row" style="margin-top: -20px;">
+                      <div class="col-sm-6 my-6" style="text-align: right;">
+                        <input id="" type="text" class="formcontact"  placeholder="*Nombre">
+                      </div>
+                      <div class="col-sm-6 my-6" style="text-align: left;">
+                        <input id="" type="email" class="formcontact"  placeholder="*Correo">
+                      </div>
+                      <div class="col-sm-12 my-12" style="display: flex;text-align: center;margin-top: 2%;">
+                        <textarea id=""   rows="4" type="text" class="formcontact"  placeholder="*Escribe el comentario" style="height: 100%;"></textarea>
+                      </div>
+                      <div class="col-sm-12 my-12" style="text-align: right;margin-top: 2%;">
+                        <button id="btncontact" type="" class="btntool">COMENTAR</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+          </div>
+        </div>
+
+        <div class="col-sm-4" >
+          <section id=aboutmepost>
+            <p class="card-title-post" >Sobre mi</p>
+            <hr class="hrseparatormini">
+            <p class="card-text-post" style="font-size: initial;">
+              Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
+  "There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..."
+            </p>
+            <div class="divsocial-network" style="text-align: left;">
+              <ul class="social-network  circle-post ">
+                <li><a href="#" class="icoFacebookpost" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a href="#" class="icoTwitterpost" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="#" class="icoInstagrampost" title="Instagram"><i class="fab fa-instagram"></i></a></li>
+                <li><a href="#" class="icoLinkedinpost" title="Linkedin"><i class="fab fa-linkedin"></i></a></li>
+              </ul>
+            </div>
+            <hr>
+            <p class="card-title-post" >Ultimas Publicaciones</p>
+            <hr class="hrseparatormini">
+            <div class="row" style=" margin-top: 4%;">
+              <div class="col-md-3" style="margin-left: 0px;">
+                <img class="img-last-post" src="{{asset 'entry2.png'}}" alt="">
+              </div>
+              <div class="col-md-9">
+                <p class="card-subtitle-post"> Big Data</p>
+                <hr class="hrseparatormini">
+                <p class="card-date"> Junio 22, 2018</p>
+              </div>
+            </div>
+
+            <div class="row" style=" margin-top: 4%;">
+              <div class="col-md-3" style="margin-left: 0px;">
+                <img class="img-last-post" src="{{asset 'entry1.png'}}" alt="">
+              </div>
+              <div class="col-md-9">
+                <p class="card-subtitle-post"> Ingteligencia Artificial</p>
+                <hr class="hrseparatormini">
+                <p class="card-date"> Junio 22, 2018</p>
+              </div>
+            </div>
+
+            <div class="row" style=" margin-top: 4%;">
+              <div class="col-md-3" style="margin-left: 0px;">
+                <img class="img-last-post" src="{{asset 'carousel3.png'}}" alt="">
+              </div>
+              <div class="col-md-9">
+                <p class="card-subtitle-post"> Integracion</p>
+                <hr class="hrseparatormini">
+                <p class="card-date"> Junio 22, 2018</p>
+              </div>
+            </div>
+
+            <hr>
+            <section id=followmepost>
+              <p class="card-title-post" >Sígueme en las redes</p>
+              <hr class="hrseparatormini">
+              <div claSS="divsocial-network" style="text-align: left;">
+                <ul class="social-network  circle-post ">
+                  <li><a href="#" class="icoFacebookpost" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                  <li><a href="#" class="icoTwitterpost" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+                  <li><a href="#" class="icoInstagrampost" title="Instagram"><i class="fab fa-instagram"></i></a></li>
+                  <li><a href="#" class="icoLinkedinpost" title="Linkedin"><i class="fab fa-linkedin"></i></a></li>
+                </ul>
+              </div>
+            </section>
+
+
+            <hr>
+            <p class="card-title-post" >Instagram</p>
+            <hr class="hrseparatormini">
+            <img class="img-instagram-post" src="{{asset 'entry1.png'}}" alt="">
+            <img class="img-instagram-post" src="{{asset 'carousel3.png'}}" alt="">
+            <img class="img-instagram-post" src="{{asset 'entry2.png'}}" alt="">
+            <img class="img-instagram-post" src="{{asset 'entry2.png'}}" alt="">
+            <img class="img-instagram-post" src="{{asset 'entry1.png'}}" alt="">
+            <img class="img-instagram-post" src="{{asset 'carousel3.png'}}" alt="">
+            <img class="img-instagram-post" src="{{asset 'entry1.png'}}" alt="">
+            <img class="img-instagram-post" src="{{asset 'carousel3.png'}}" alt="">
+            <img class="img-instagram-post" src="{{asset 'entry2.png'}}" alt="">
+            <hr>
+            <p class="card-title-post" >Etiquetas</p>
+            <hr class="hrseparatormini">
+            {{#get "tags" limit="all"}}
+              {{#foreach tags}}
+                  <button href="{{url}}"  class="btntool tags">{{name}}</button>
+              {{/foreach}}
+            {{/get}}
+
+            <hr>
+            <p class="card-title-post" >Buscador</p>
+            <hr class="hrseparatormini">
+            <input id="inputsuscribe" type="text" placeholder="Buscar">
+            <button id="btnbuscar" type="" class="btntool">Buscar</button>
+          </section>
+        </div>
+      </div>
+    </div>
+  </section>
+{{/post}}
+
+{{!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs --}}
+{{#contentFor "scripts"}}
+<script>
+
+// NOTE: Scroll performance is poor in Safari
+// - this appears to be due to the events firing much more slowly in Safari.
+//   Dropping the scroll event and using only a raf loop results in smoother
+//   scrolling but continuous processing even when not scrolling
+$(document).ready(function () {
+    // Start fitVids
+    var $postContent = $(".post-full-content");
+    $postContent.fitVids();
+    // End fitVids
+
+    var progressBar = document.querySelector('#reading-progress');
+    var header = document.querySelector('.floating-header');
+    var title = document.querySelector('.post-full-title');
+
+    var lastScrollY = window.scrollY;
+    var lastWindowHeight = window.innerHeight;
+    var lastDocumentHeight = $(document).height();
+    var ticking = false;
+
+    function onScroll() {
+        lastScrollY = window.scrollY;
+        requestTick();
+    }
+
+    function onResize() {
+        lastWindowHeight = window.innerHeight;
+        lastDocumentHeight = $(document).height();
+        requestTick();
+    }
+
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(update);
+        }
+        ticking = true;
+    }
+
+    function update() {
+        var trigger = title.getBoundingClientRect().top + window.scrollY;
+        var triggerOffset = title.offsetHeight + 35;
+        var progressMax = lastDocumentHeight - lastWindowHeight;
+
+        // show/hide floating header
+        if (lastScrollY >= trigger + triggerOffset) {
+            header.classList.add('floating-active');
+        } else {
+            header.classList.remove('floating-active');
+        }
+
+        progressBar.setAttribute('max', progressMax);
+        progressBar.setAttribute('value', lastScrollY);
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', onScroll, {passive: true});
+    window.addEventListener('resize', onResize, false);
+
+    update();
+
+});
+</script>
+{{/contentFor}}

@@ -1,0 +1,25 @@
+<div class="entradas col-sm-4 my-4">
+  <div href="{{url}}" class="entry-card shadow card card">
+    {{#if feature_image}}
+      <img  class="card-img-top" src="{{feature_image}}" alt="{{title}}">
+    {{/if}}
+    <div class="card-body">
+      {{#if primary_tag}}
+          <p class="card-tag"> {{primary_tag.name}}</p>
+      {{/if}}
+      <p href="{{url}}" class="card-title">{{title}}</p>
+      <p class="card-date"> {{date}}</p>
+      {{#is "home"}}
+      <p class="card-text">{{excerpt}}</p>
+      {{/is}}
+      {{#is "blog"}}
+      <p class="card-text">{{excerpt}}</p>
+      {{/is}}
+
+
+    </div>
+    <div class="cardfooter col-sm-12">
+      <a href="{{url}}" class="card-more">LEER MAS</a>
+    </div>
+  </div>
+</div>

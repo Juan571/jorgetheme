@@ -1,0 +1,31 @@
+
+{{!< default}}
+<header class="container">
+
+</header>
+
+
+<main id="site-main" class="site-main outer">
+  <section style="background-color: #f4f4f4;">
+    <div class="container" style="padding-top: 1px;padding-bottom: 10px;">
+      <div class="col-sm-12 my-12" style="text-align: center;margin-top: 30px;">
+        <h2 class="htittles"> Entradas</h2>
+        <hr class="hrseparator">
+
+        <div class="row">
+          {{#foreach posts}}
+            {{> "post-card"}}
+          {{/foreach}}
+          {{pagination}}
+        </div>
+        <!-- ol class="carousel-indicators carousel-indicators-numbers" style="width: 70%;margin-top: 45px;margin-bottom: 15px;position: relative;">
+          <li data-target="" data-slide-to="0" class="active"></li>
+          <li data-target="l" data-slide-to="1"></li>
+          <li data-target="" data-slide-to="2"></li>
+        </ol -->
+
+      </div>
+    </div>
+  </section>
+
+</main>

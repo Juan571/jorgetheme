@@ -1,0 +1,30 @@
+<!-- Este es el bucle de post - cada puesto se emitirá utilizando este marcado -->
+  {{#foreach posts}}
+  <article class="{{post_class}}">
+    <header class="post-header">
+      {{!-- Titulo del post --}}
+      <h2><a href="{{url}}">{{title}}</a></h2>
+    </header>
+    <section class="post-excerpt">
+      {{!-- Extracto del post --}}
+      <p>{{excerpt words="26"}} <a class="read-more" href="{{url}}">[...]</a></p>
+    </section>
+    <footer class="post-meta">
+      {{!-- Autor del post --}}
+      {{#author}}
+        <a href="{{url}}" class="author-link">
+          <img class="author-image" src="{{image_url}}" alt="Author image" />
+          <p>{{name}}</p>
+        </a>
+      {{/author}}
+      {{!-- Etiquetas --}}
+      {{#if tags}}
+        <div class="tags">
+          {{tags separator=", " prefix="Etiquetado en: "}}
+        </div>
+      {{/if}}
+      {{!--Fecha de publicación--}}
+      <time class="post-date" datetime="{{date format='YYYY-MM-DD'}}">{{date format="DD MMMM YYYY"}}</time>
+    </footer>
+  </article>
+  {{/foreach}}

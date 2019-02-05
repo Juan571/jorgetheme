@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {{!--archivo que contiene configuración head se encuentra en la carpeta -> partials--}}
+    {{> "head"}}
+
+</head>
+<body class="{{body_class}}">
+
+    {{!--Menu de navegación--}}
+    {{navigation}}
+
+    {{!-- Todo el contenido principal se inserta aquí, index.hbs, post.hbs, etc --}}
+    {{{body}}}
+
+    {{!-- Footer o pie de pagina se encuentra en la carpeta -> partials --}}
+    {{> "footer"}}
+
+    {{!-- Insertar jQuery antes de `{{ghost_foot}}` para que jQuery pueda ser utilizado en la inyección de código --}}
+    {{!-- Ghost genera scripts y datos importantes con esta etiqueta --}}
+    {{ghost_foot}}
+    {{!-- Librería highlight.js --}}
+    <script src="{{asset "js/highlight.js"}}"></script>
+    {{!--Script principal--}}
+    <script>
+        var images = document.querySelectorAll('.kg-gallery-image img');
+        images.forEach(function (image) {
+            var container = image.closest('.kg-gallery-image');
+            var width = image.attributes.width.value;
+            var height = image.attributes.height.value;
+            var ratio = width / height;
+            container.style.flex = ratio + ' 1 0%';
+        })
+    </script>
+    {{!-- jQuery + Fitvids, which makes all video embeds responsive --}}
+    <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="{{asset "js/app.bundle.js"}}"></script>
+    <script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@14/dist/smooth-scroll.polyfills.min.js"></script>
+</body>
+</html>
