@@ -84,16 +84,38 @@
 	          <p style="font-size: initial;">Mantengase en contacto al unirse al boletín</p>
 	        </div>
 	        <div class="col-md-5">
-	          <form>
-	            <div class="form-group">
-	              <input id="inputsuscribe" type="email" placeholder="Ingresa tu correo">
-	            </div>
-	          </form>
+	          <form method="post" action="/subscribe/" id="newsletter">
+						  <input class="confirm" type="hidden" name="confirm">
+						  <input class="location" type="hidden" name="location" value="">
+						  <input class="referrer" type="hidden" name="referrer" value="">
+
+						  <div class="row">
+								<div class="col-md-9">
+						    	<input id="inputsuscribe" type="email" name="email" placeholder="Ingresa tu correo">
+								</div>
+								<div class="col-md-2">
+									<button id="btnsuscribe" type="submit" class="btntool">
+							      Suscribete
+							    </button>
+								</div>
+
+						  </div>
+						  <script>
+						    (function (g, h, o, s, t) {
+						      var buster = function (b, m) {
+						        h[o]('input.' + b).forEach(function (i) {
+						          i.value = i.value || m;
+						        });
+						      };
+						      buster('location', g.location.href);
+						      buster('referrer', h.referrer);
+						    })(window, document, 'querySelectorAll', 'value');
+						  </script>
+						</form>
 	        </div>
-	        <div class="col-md-2">
-	          <button id="btnsuscribe" type="" class="btntool">Suscribete</button>
-	        </div>
+
 	      </div>
+
 	    </div>
 	  </section>
 	  <section  id=contact>

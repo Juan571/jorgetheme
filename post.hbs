@@ -267,8 +267,14 @@ into the {body} of the default.hbs template --}}
             <hr>
             <p class="card-title-post" >Buscador</p>
             <hr class="hrseparatormini">
+
             <input id="inputsuscribe" type="text" placeholder="Buscar">
             <button id="btnbuscar" type="" class="btntool">Buscar</button>
+            <form>
+                <input id="search-field" />
+                <input type="submit" value="search">
+            </form>
+            <div id="results"></div>
           </section>
         </div>
       </div>
@@ -289,6 +295,9 @@ $(document).ready(function () {
     var $postContent = $(".post-full-content");
     $postContent.fitVids();
     // End fitVids
+    $("#search-field").ghostHunter({
+      results   : "#results" // ID de nuestro section
+    })
 
     var progressBar = document.querySelector('#reading-progress');
     var header = document.querySelector('.floating-header');

@@ -1,0 +1,89 @@
+<div class="col-sm-4" >
+  <section id=aboutmepost>
+    <p class="card-title-post" >Sobre mi</p>
+    <hr class="hrseparatormini">
+    <p class="card-text-post" style="font-size: initial;">
+      Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
+"There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..."
+    </p>
+    <div class="divsocial-network" style="text-align: left;">
+      <ul class="social-network  circle-post ">
+        <li><a href="#" class="icoFacebookpost" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+        <li><a href="#" class="icoTwitterpost" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+        <li><a href="#" class="icoInstagrampost" title="Instagram"><i class="fab fa-instagram"></i></a></li>
+        <li><a href="#" class="icoLinkedinpost" title="Linkedin"><i class="fab fa-linkedin"></i></a></li>
+      </ul>
+    </div>
+    <hr>
+    <p class="card-title-post" >{{id}}Ultimas Publicaciones</p>
+    <hr class="hrseparatormini">
+    {{#get "posts"  limit="3" as |related_posts|}}
+        {{#if related_posts}}
+          {{#foreach related_posts}}
+
+            <div href="{{url}}" class="row" style=" margin-top: 4%;">
+              <div class="col-md-3" style="margin-left: 0px;">
+                {{#if feature_image}}
+                  <img  class="img-last-post" src="{{feature_image}}" alt="{{title}}">
+                {{/if}}
+              </div>
+              <div class="col-md-9">
+                <a href="{{url}}" class="card-subtitle-post"> {{title}}</a>
+                <hr class="hrseparatormini">
+                <p class="card-date"> {{date}}</p>
+              </div>
+            </div>
+
+          {{/foreach}}
+        {{/if}}
+      {{/get}}
+
+    <hr>
+    <section id=followmepost>
+      <p class="card-title-post" >Sígueme en las redes</p>
+      <hr class="hrseparatormini">
+      <div claSS="divsocial-network" style="text-align: left;">
+        <ul class="social-network  circle-post ">
+          <li><a href="#" class="icoFacebookpost" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+          <li><a href="#" class="icoTwitterpost" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+          <li><a href="#" class="icoInstagrampost" title="Instagram"><i class="fab fa-instagram"></i></a></li>
+          <li><a href="#" class="icoLinkedinpost" title="Linkedin"><i class="fab fa-linkedin"></i></a></li>
+        </ul>
+      </div>
+    </section>
+
+
+    <hr>
+    <p class="card-title-post" >Instagram</p>
+    <hr class="hrseparatormini">
+    <img class="img-instagram-post" src="{{asset 'entry1.png'}}" alt="">
+    <img class="img-instagram-post" src="{{asset 'carousel3.png'}}" alt="">
+    <img class="img-instagram-post" src="{{asset 'entry2.png'}}" alt="">
+    <img class="img-instagram-post" src="{{asset 'entry2.png'}}" alt="">
+    <img class="img-instagram-post" src="{{asset 'entry1.png'}}" alt="">
+    <img class="img-instagram-post" src="{{asset 'carousel3.png'}}" alt="">
+    <img class="img-instagram-post" src="{{asset 'entry1.png'}}" alt="">
+    <img class="img-instagram-post" src="{{asset 'carousel3.png'}}" alt="">
+    <img class="img-instagram-post" src="{{asset 'entry2.png'}}" alt="">
+    <hr>
+    <p class="card-title-post" >Etiquetas</p>
+    <hr class="hrseparatormini">
+    {{#get "tags" limit="all"}}
+      {{#foreach tags}}
+          <button href="{{url}}"  class="btntool tags">{{name}}</button>
+      {{/foreach}}
+    {{/get}}
+
+    <hr>
+    <p class="card-title-post" >Buscador</p>
+    <hr class="hrseparatormini">
+
+    <input id="inputsuscribe" type="text" placeholder="Buscar">
+    <button id="btnbuscar" type="" class="btntool">Buscar</button>
+    <form>
+        <input id="search-field" />
+        <input type="submit" value="search">
+    </form>
+    <div id="results"></div>
+  </section>
+</div>
