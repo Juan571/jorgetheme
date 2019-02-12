@@ -262,18 +262,65 @@ into the {body} of the default.hbs template --}}
             <p class="card-title-post" >Buscador</p>
             <hr class="hrseparatormini">
 
-            <input id="inputsuscribe" type="text" placeholder="Buscar">
+            <input id="ghost-search-field" type="text" placeholder="Buscar" style="text-indent: 10px;margin-top: 8px;height: 50px;width: 100%;">
             <button id="btnbuscar" type="" class="btntool">Buscar</button>
-            <form>
-                <input id="search-field" />
-                <input type="submit" value="search">
-            </form>
-            <div id="results"></div>
+            <div id="ghost-search-results"></div>
           </section>
         </div>
       </div>
     </div>
   </section>
+  <script type="text/javascript" src="{{asset "js/instafeed.js"}}"></script>
+  <script type="text/javascript" src="{{asset "js/instagram.js"}}"></script>
+  <script type="text/javascript" src="{{asset "js/ghost-search.min.js"}}"></script>
+  <script>
+    let ghostSearch = new GhostSearch({
+      key: '22444f78447824223cefc48062', // This is just a demo key. Replace the key with a real one. See Step 3.
+      host: 'https://demo.ghost.io',
+      version: 'v2',
+      input: '#ghost-search-field',
+      results: '#ghost-search-results',
+      button: '',
+      development: false,
+      defaultValue: '',
+      template: function(result) {
+          let url = [location.protocol, '//', location.host].join('');
+          return '<li><a class="card-tag-post" style="font-size: x-large;" href="' + url + '/blog/' + result.slug + '/">' + result.title + '</a></l1>';
+      },
+      trigger: 'focus',
+      options: {
+          keys: [
+              'title'
+          ],
+          limit: 100,
+          threshold: -3500,
+          allowTypo: false
+      },
+      api: {
+          resource: 'posts',
+          parameters: {
+              limit: 'all',
+              fields: ['title', 'slug'],
+              filter: '',
+              include: '',
+              order: '',
+              formats: '',
+          },
+      },
+      on: {
+          beforeDisplay: function(){},
+          afterDisplay: function(results){},
+          beforeFetch: function(){},
+          afterFetch: function(){}
+      }
+  });
+
+    // NOTE: Scroll performance is poor in Safari
+    // - this appears to be due to the events firing much more slowly in Safari.
+    //   Dropping the scroll event and using only a raf loop results in smoother
+    //   scrolling but continuous processing even when not scrolling
+
+  </script>
 {{/post}}
 
 {{!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs --}}
